@@ -38,20 +38,22 @@ register(process.env.SERVICE_WORKER_FILE, {
 
   updated (registration) {
     if (process.env.DEV) {
-      Notify.create({
-        message: 'Une mise à jour est disponible',
-        icon: 'cloud_download',
-        closeBtn: 'Mettre à jour',
-        timeout: 50000,
-        onDismiss: function () {
-          // Send an event for the skip waiting
-          registration.waiting.postMessage({ action: 'skipWaiting' })
-
-          // Reload to use the new service worker
-          location.reload(true)
-        }
-      })
+      console.log('Updated')
     }
+    Notify.create({
+      message: 'Une mise à jour est disponible',
+      icon: 'cloud_download',
+      closeBtn: 'Mettre à jour',
+      timeout: 50000,
+      onDismiss: function () {
+        // Send an event for the skip waiting
+        registration.waiting.postMessage({ action: 'skipWaiting' })
+
+        // Reload to use the new service worker
+        // True flag for cache clearing, but deprecated
+        location.reload(true)
+      }
+    })
   },
 
   offline () {
