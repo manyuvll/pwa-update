@@ -10,7 +10,7 @@ self.addEventListener('install', function () {
 })
 
 // Needed to make PWA installable on chrome
-this.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', function (event) {
   console.log('fetch event')
 })
 
